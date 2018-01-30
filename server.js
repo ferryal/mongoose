@@ -33,7 +33,7 @@ let Movies = mongoose.model("Movie", movieSchema)
 const thor = new Movies({title: "Thor Ragnarok", rating: 9, genre: "Action"})
 const jumanji = new Movies({title: "Jumanji", rating: 9, genre: "Adventures"})
 
-//save new data
+// save new data
 thor.save((err) => {
   if (err) 
     throw err
@@ -47,7 +47,7 @@ jumanji.save((err) => {
   console.log(jumanji);
 })
 
-//update exist data
+// update exist data
 Movies.findOneAndUpdate({
   title: /Conj/
 }, {
@@ -60,11 +60,29 @@ Movies.findOneAndUpdate({
   console.log("Update successfully");
 })
 
-//remove existing data
+// remove existing data
 Movies.findOneAndRemove({
   title: /Sho/
 }, (err, Movies) => {
   if (err) 
     throw err
   console.log('Delete successfully');
+})
+
+//get all data
+Movies.find({}, (err, Movies) => {
+  if (err) 
+    throw err
+  console.log("------------Get All Data-----------");
+  console.log(Movies);
+})
+
+//get one data
+Movies.find({
+  title: /Wir/
+}, (err, Movies) => {
+  if (err) 
+    throw err
+  console.log("------------Get One Data------------");
+  console.log(Movies);
 })
